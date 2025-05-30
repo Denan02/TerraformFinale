@@ -44,10 +44,10 @@ resource "aws_ecs_task_definition" "frontend_task" {
   ]
   task_role_arn = data.aws_iam_role.lab_role.arn
 
-#  placement_constraints {
- #   expression = "attribute:ecs.subnet-id in [${aws_subnet.arm_subnet_public.id}]"
-  #  type       = "memberOf"
-  #}
+  placement_constraints {
+    expression = "attribute:ecs.subnet-id in [${aws_subnet.arm_subnet_public.id}]"
+    type       = "memberOf"
+  }
 }
 
 resource "aws_ecs_service" "frontend_service" {
@@ -107,10 +107,10 @@ resource "aws_ecs_task_definition" "database_task" {
   ]
   task_role_arn = data.aws_iam_role.lab_role.arn
 
-#  placement_constraints {
- #   expression = "attribute:ecs.subnet-id in [${aws_subnet.arm_subnet_private.id}]"
- #   type       = "memberOf"
- # }
+  placement_constraints {
+    expression = "attribute:ecs.subnet-id in [${aws_subnet.arm_subnet_private.id}]"
+    type       = "memberOf"
+  }
 }
 
 resource "aws_ecs_service" "database_service" {
